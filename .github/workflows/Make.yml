@@ -1,36 +1,36 @@
-name: Android-Recovery-Builder
+name: Make Recovery With Common Tree
 
 on:
   workflow_dispatch:
     inputs:
-      MANIFEST_TYPE:
-        description: 'MANIFEST_TYPE'
+      LIBRARY_NAME:
+        description: 'LIBRARY_NAME'
         required: true
         default: 'omni'
-      MANIFEST_URL:
-        description: 'MANIFEST_URL'
+      LIBRARY_URL:
+        description: 'LIBRARY_URL'
         required: true
-        default: 'git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git'
-      MANIFEST_BRANCH:
+        default: 'https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git'
+      LIBRARY_BRANCH:
         description: 'LIBRARY_BRANCH'
         required: true
         default: 'twrp-9.0'
-      DEVICE_TREE_URL:
-        description: 'DEVICE_TREE_URL'
+      DEVICE_URL:
+        description: 'DEVICE_URL'
         required: true
-        default: 'https://github.com/azwhikaru/twrp_device_xiaomi_archytas'
-      DEVICE_TREE_BRANCH:
-        description: 'DEVICE_TREE_BRANCH'
+        default: 'https://github.com/123qiu-jie/android_device_asus_ASUS_Z012D'
+      DEVICE_BRANCH:
+        description: 'DEVICE_BRANCH'
         required: true
-        default: 'twrp-9.0'
+        default: 'master'
       DEVICE_PATH:
         description: 'DEVICE_PATH'
         required: true
-        default: 'device/xiaomi/Archytas'
+        default: 'device/asus/ASUS_Z012D'
       DEVICE_NAME:
         description: 'DEVICE_NAME'
         required: true
-        default: 'Archytas'
+        default: 'ASUS_Z012D'
 
 jobs:
   build:
