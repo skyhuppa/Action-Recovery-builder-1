@@ -1,4 +1,4 @@
-name: Android-Recovery-Builder
+name: orangefox-Builder
 
 on:
   workflow_dispatch:
