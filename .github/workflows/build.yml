@@ -66,11 +66,11 @@ jobs:
           
       - name: fox sync
         run: |
-         mkdir ${{env.WorkSpace}}
-         cd ${{env.WorkSpace}}
-         git clone ${{env.FOX_SYNC}} 
-         cd sync
-         bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
+          mkdir ~/OrangeFox_sync
+          cd ~/OrangeFox_sync
+          git clone https://github.com/skyhuppa/sync.git 
+          cd ~/OrangeFox_sync/sync/
+          ./orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
 
       - name: fox theme
         run: |
@@ -78,8 +78,8 @@ jobs:
 
       - name: Sync device tree
         run: |
-          cd ${{env.WorkSpace}}
-          git clone ${{env.DT_LINK}} --depth=1 --single-branch ${{env.DEVICE_PATH}}
+          cd cd ~/fox_12.1
+          git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
 
       - name: Show tree
         run: tree -C -d -L 3
