@@ -111,7 +111,7 @@ jobs:
             
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
-          cd ${{env.WorkSpace}}
+          cd ${{env.WorkSpace}}/sync
           echo "::group::Run Envsetup.sh"
           source build/envsetup.sh
           echo "::endgroup::"
@@ -122,10 +122,6 @@ jobs:
           echo "::endgroup::"
           echo "::group::Lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng"
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng
-          echo "::endgroup::"
-          echo "::group::Sync"
-          repo sync -j$(nproc --all)
-          echo "::endgroup::"
           echo "::group::Build ${{env.RECOVERY_NAME}}"
           mka ${{env.target}}
           echo "::endgroup::"
