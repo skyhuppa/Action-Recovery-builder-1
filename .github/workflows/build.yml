@@ -70,7 +70,7 @@ jobs:
          cd ${{env.WorkSpace}}
          git clone ${{env.FOX_SYNC}} 
          cd sync
-         bash orangefox_sync.sh --branch 12.1 --path ~/OrangeFox_12.1
+         bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
 
       - name: fox theme
         run: |
