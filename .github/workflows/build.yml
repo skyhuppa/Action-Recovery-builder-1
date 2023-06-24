@@ -76,6 +76,7 @@ jobs:
         run: |
          cd ${{env.WorkSpace}}
          git clone ${{env.FOX_SYNC}} 
+         cd sync
          bash orangefox_sync.sh --branch $SYNC_BRANCH --path $SYNC_PATH
 
       - name: fox theme
