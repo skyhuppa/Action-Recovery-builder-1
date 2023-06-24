@@ -16,7 +16,7 @@ env:
   FOX_BRANCH: 'fox_12.1'
   FOX_SYNC: 'https://github.com/skyhuppa/sync'
   FOX_SYNC_PATH: sync'
-  FOX_THEME: 'https://github.com/skyhuppa/theme'
+  FOX_THEME: 'https://github.com/skyhuppa/theme.git'
   FOX_THEME_PATH: 'bootable/recovery/gui/theme'
   target: recoveryimage
   WorkSpace: WorkSpace
@@ -74,7 +74,8 @@ jobs:
 
       - name: fox theme
         run: |
-          git clone ${{env.FOX_THEME}} ${{env.FOX_THEME_PATH}}
+          cd $MANIFEST_DIR/bootable/recovery/gui/theme
+          git https://github.com/skyhuppa/theme.git
 
       - name: Sync device tree
         run: |
@@ -111,8 +112,9 @@ jobs:
             
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
-          cd ${{env.WorkSpace}}/${{env.DEVICE_PATH}}
-          source build/envsetup.sh
+          cd ~/OrangeFox
+            /bin/bash
+            source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
