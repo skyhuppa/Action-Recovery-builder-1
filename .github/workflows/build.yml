@@ -64,12 +64,6 @@ jobs:
 #          repo init -u ${{env.Rec_url}} --depth=1 --groups=all,-notdefault,-device,-darwin,-x86,-mips
 #          repo sync -j$(nproc --all)
           
-      - name: Sync device tree
-        run: |
-          mkdir ${{env.WorkSpace}}
-          cd ${{env.WorkSpace}}
-          git clone ${{env.DT_LINK}} --depth=1 --single-branch ${{env.DEVICE_PATH}}
-
       - name: fox sync
         run: |
          cd ${{env.WorkSpace}}
@@ -80,6 +74,12 @@ jobs:
       - name: fox theme
         run: |
           git clone ${{env.FOX_THEME}} ${{env.FOX_THEME_PATH}}
+
+      - name: Sync device tree
+        run: |
+          mkdir ${{env.WorkSpace}}
+          cd ${{env.WorkSpace}}
+          git clone ${{env.DT_LINK}} --depth=1 --single-branch ${{env.DEVICE_PATH}}
 
       - name: Show tree
         run: tree -C -d -L 3
