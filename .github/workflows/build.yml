@@ -70,12 +70,10 @@ jobs:
         run: |
           mkdir ${{env.WorkSpace}}
           cd ${{env.WorkSpace}}
-          git clone ${{env.DT_LINK}} --depth=1 --single-branch ${{env.DT_path}}
+          git clone ${{env.DT_LINK}} --depth=1 --single-branch ${{env.DEVICE_PATH}}
 
       - name: fox sync
         run: |
-         cd ${{env.WorkSpace}}
-         mkdir ${{env.FOX_SYNC}}
          git clone ${{env.FOX_SYNC}} ${{env.FOX_SYNC_PATH}}
          bash orangefox_sync.sh --branch $SYNC_BRANCH --path $SYNC_PATH
 
