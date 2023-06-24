@@ -66,6 +66,7 @@ jobs:
           
       - name: fox sync
         run: |
+         mkdir ${{env.WorkSpace}}
          cd ${{env.WorkSpace}}
          git clone ${{env.FOX_SYNC}} 
          cd sync
@@ -77,7 +78,6 @@ jobs:
 
       - name: Sync device tree
         run: |
-          mkdir ${{env.WorkSpace}}
           cd ${{env.WorkSpace}}
           git clone ${{env.DT_LINK}} --depth=1 --single-branch ${{env.DEVICE_PATH}}
 
