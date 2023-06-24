@@ -71,11 +71,7 @@ jobs:
           git clone https://github.com/skyhuppa/sync.git 
           cd ~/OrangeFox_sync/sync/
           bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
-
-      - name: fox theme
-        run: |
-          cd $MANIFEST_DIR/bootable/recovery/gui/theme
-          git https://github.com/skyhuppa/theme.git
+#          git https://github.com/skyhuppa/theme.git bootable/recovery/gui/theme
 
       - name: Sync device tree
         run: |
