@@ -114,7 +114,7 @@ jobs:
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng && mka adbd bootimage
-        shell: bash
+#        shell: bash
 
       - name: Get info
         id: info
