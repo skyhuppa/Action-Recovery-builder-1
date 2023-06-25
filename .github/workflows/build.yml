@@ -18,7 +18,7 @@ env:
   FOX_SYNC_PATH: sync'
   FOX_THEME: 'https://github.com/skyhuppa/theme.git'
   FOX_THEME_PATH: 'bootable/recovery/gui/theme'
-  target: recoveryimage
+  target: bootimage
   WorkSpace: WorkSpace
   TZ: Asia/Shanghai
   Author: ${{github.actor}}
@@ -109,12 +109,13 @@ jobs:
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
           cd ~/fox_12.1
+           /bin/bash
           source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
-          lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
-          mka adbd bootimage -j$(nproc --all)
+          lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng mka adbd bootimage
+          mka -j$(nproc --all)
 #        shell: bash
 
       - name: Get info
