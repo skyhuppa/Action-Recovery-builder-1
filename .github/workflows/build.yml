@@ -63,20 +63,6 @@ jobs:
 #          git config --global user.email "skyhuppa@hotmail.co.uk"
 #          repo init -u ${{env.Rec_url}} --depth=1 --groups=all,-notdefault,-device,-darwin,-x86,-mips
 #          repo sync -j$(nproc --all)
-          
-      - name: fox sync
-        run: |
-          mkdir ~/OrangeFox_sync
-          cd ~/OrangeFox_sync
-          git clone https://github.com/skyhuppa/sync.git 
-          cd ~/OrangeFox_sync/sync/
-          bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
-#          git https://github.com/skyhuppa/theme.git bootable/recovery/gui/theme
-
-      - name: Sync device tree
-        run: |
-          cd ~/fox_12.1
-          git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
 
       - name: Show tree
         run: tree -C -d -L 3
@@ -105,12 +91,25 @@ jobs:
         uses: pierotofy/set-swap-space@master
         with:
            swap-size-gb: 12
-            
+
+      - name: fox sync
+        run: |
+          mkdir ~/OrangeFox_sync
+          cd ~/OrangeFox_sync
+          git clone https://github.com/skyhuppa/sync.git 
+          cd ~/OrangeFox_sync/sync/
+          bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
+#          git https://github.com/skyhuppa/theme.git bootable/recovery/gui/theme
+
+      - name: Sync device tree
+        run: |
+          cd ~/fox_12.1
+          git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
+           
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
-          cd ~/OrangeFox
-            /bin/bash
-            source build/envsetup.sh
+          cd ~/fox_12.1
+          source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
