@@ -108,14 +108,14 @@ jobs:
            
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
-          cd ~/fox_12.
-          build/envsetup.sh
+          cd ~/fox_12.1
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
+          build/envsetup.sh
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
-          mka adbd bootimage
-          mka -j$(nproc --all)
+          make clean
+          mka adbd bootimage -j$(nproc --all)
 #        shell: bash
 
       - name: Get info
