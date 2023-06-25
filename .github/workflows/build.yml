@@ -94,16 +94,16 @@ jobs:
 
       - name: fox sync
         run: |
-          mkdir ~/OrangeFox_sync
-          cd ~/OrangeFox_sync
+          mkdir sync
+          cd sync
           git clone https://github.com/skyhuppa/sync.git 
-          cd ~/OrangeFox_sync/sync/
-          bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
+          cd sync
+          bash orangefox_sync.sh --branch 12.1 --path /fox_12.1
 #          git https://github.com/skyhuppa/theme.git bootable/recovery/gui/theme
 
       - name: Sync device tree
         run: |
-          cd ~/fox_12.1
+          cd fox_12.1
           git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
            
       - name: Build ${{env.RECOVERY_NAME}}
