@@ -98,7 +98,7 @@ jobs:
           cd sync
           git clone https://github.com/skyhuppa/sync.git 
           cd sync
-          bash orangefox_sync.sh --branch 12.1 --path /fox_12.1
+          bash orangefox_sync.sh --branch 12.1 --path fox_12.1
 #          git https://github.com/skyhuppa/theme.git bootable/recovery/gui/theme
 
       - name: Sync device tree
