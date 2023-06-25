@@ -112,7 +112,7 @@ jobs:
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
-          build/envsetup.sh
+          source build/envsetup.sh
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
           make clean
           mka adbd bootimage -j$(nproc --all)
