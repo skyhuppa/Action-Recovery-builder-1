@@ -99,7 +99,7 @@ jobs:
           bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
 #          git https://github.com/skyhuppa/theme.git bootable/recovery/gui/theme
 
-      - name: Sync device tree and Build ${{env.RECOVERY_NAME}}
+      - name: Sync device tree
         run: |
           cd ~/fox_12.1
           git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
@@ -111,6 +111,7 @@ jobs:
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
+          export FOX_BUILD_TYPE="Unofficial"
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
           make clean
           mka adbd bootimage -j$(nproc --all)
