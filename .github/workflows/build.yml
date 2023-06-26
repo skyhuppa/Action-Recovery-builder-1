@@ -96,17 +96,17 @@ jobs:
         run: |
           git clone https://github.com/skyhuppa/sync.git 
           cd sync
-          bash orangefox_sync.sh --branch 12.1 --path fox_12.1
+          bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
 #          git https://github.com/skyhuppa/theme.git bootable/recovery/gui/theme
 
       - name: Sync device tree
         run: |
-          cd fox_12.1
+          cd ~/fox_12.1
           git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
            
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
-          cd ox_12.1
+          cd ~/fox_12.1
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
