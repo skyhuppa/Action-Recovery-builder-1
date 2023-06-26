@@ -103,6 +103,10 @@ jobs:
         run: |
           cd ~/fox_12.1
           git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
+          
+      - name: Build ${{env.RECOVERY_NAME}}
+        run: |
+          cd ~/fox_12.1    
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
