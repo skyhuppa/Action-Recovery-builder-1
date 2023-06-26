@@ -106,6 +106,7 @@ jobs:
           
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
+          PATH=~/bin:$PATHv
           cd ~/fox_12.1    
           source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
