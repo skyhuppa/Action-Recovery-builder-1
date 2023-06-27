@@ -10,7 +10,7 @@ on:
 env:
   RECOVERY_NAME: 'Orangefox'
   ProductFileHeader: 'twrp'
-  DT_LINK: 'https://github.com/skyhuppa/Realme_8_RMX3085 -b fox_11.0'
+  DT_LINK: 'https://github.com/skyhuppa/Realme_8_RMX3085 -b fox_12.1'
   DEVICE: 'RMX3085'
   DEVICE_PATH: 'device/realme/RMX3085'
   FOX_BRANCH: 'fox_12.1'
