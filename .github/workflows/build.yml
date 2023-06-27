@@ -107,6 +107,7 @@ jobs:
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
           cd ~/fox_12.1 
+          source build/envsetup.sh
           export USE_CCACHE=1
           export CCACHE_EXEC=/usr/bin/ccache
           ccache -M 50G
@@ -115,11 +116,9 @@ jobs:
           export LC_ALL="C"
           export FOX_BUILD_TYPE="Unofficial"
           export FOX_BUILD_DEVICE=RMX3085
-          source build/envsetup.sh
           export EXTRA_CMD="export OF_MAINTAINER=Skyhuppa"
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
-          make clean
-          mka adbd bootimage -j$(nproc --all)
+          mka recoveryimmage # -j$(nproc --all)
         shell: bash
 
       - name: Get info
