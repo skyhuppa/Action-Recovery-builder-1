@@ -116,7 +116,7 @@ jobs:
           export FOX_BUILD_TYPE="Unofficial"
           export FOX_BUILD_DEVICE=RMX3085
           source build/envsetup.sh
-          EXTRA_CMD
+          export EXTRA_CMD="export OF_MAINTAINER=Skyhuppa"
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
           make clean
           mka adbd bootimage -j$(nproc --all)
