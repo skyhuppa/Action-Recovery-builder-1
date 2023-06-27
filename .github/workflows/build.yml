@@ -106,16 +106,20 @@ jobs:
           
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
-          cd ~/fox_12.1    
-          source build/envsetup.sh
+          cd ~/fox_12.1 
+          export USE_CCACHE=1
+          export CCACHE_EXEC=/usr/bin/ccache
+          ccache -M 50G
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
           export FOX_BUILD_TYPE="Unofficial"
+          export FOX_BUILD_DEVICE=RMX3085
+          source build/envsetup.sh
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
           make clean
           mka adbd bootimage -j$(nproc --all)
-#        shell: bash
+        shell: bash
 
       - name: Get info
         id: info
