@@ -106,8 +106,7 @@ jobs:
           
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
-          cd ~/work
-          source build/envsetup.sh
+          cd ~/work  
           export USE_CCACHE=1
           export CCACHE_EXEC=/usr/bin/ccache
           ccache -M 50G
@@ -117,6 +116,7 @@ jobs:
           export FOX_BUILD_TYPE="Unofficial"
           export FOX_BUILD_DEVICE=RMX3085
           export EXTRA_CMD="export OF_MAINTAINER=Skyhuppa"
+          source build/envsetup.sh
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
           mka recoveryimmage # -j$(nproc --all)
         shell: bash
