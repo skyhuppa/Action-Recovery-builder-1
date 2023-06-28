@@ -13,9 +13,9 @@ env:
   DT_LINK: 'https://github.com/skyhuppa/Realme_8_RMX3085 -b fox_12.1'
   DEVICE: 'RMX3085'
   DEVICE_PATH: 'device/realme/RMX3085'
-  FOX_BRANCH: 'fox_12.1'
+  SYNC_BRANCH: 'fox_12.1'
   FOX_SYNC: 'https://gitlab.com/OrangeFox/sync.git'
-  FOX_SYNC_PATH: sync'
+  SYNC_PATH: sync'
   FOX_THEME: 'https://github.com/skyhuppa/theme.git'
   FOX_THEME_PATH: 'bootable/recovery/gui/theme'
   target: bootimage
@@ -96,17 +96,17 @@ jobs:
         run: |
           git clone --depth=1 --single-branch https://github.com/skyhuppa/sync.git 
           cd sync
-          bash orangefox_sync.sh --${{env.FOX_BRANCH}} --path ~/work
+          bash orangefox_sync.sh --${{env.SYNC_BRANCH}} --path $SYNC_PATH
 #          git https://github.com/skyhuppa/theme.git bootable/recovery/gui/theme
 
       - name: Sync device tree
         run: |
-          cd ~/work
+          cd sync
           git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
           
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
-          cd ~/work  
+          cd sync  
           export USE_CCACHE=1
           export CCACHE_EXEC=/usr/bin/ccache
           ccache -M 50G
@@ -117,6 +117,7 @@ jobs:
           export FOX_BUILD_DEVICE=RMX3085
           export EXTRA_CMD="export OF_MAINTAINER=Skyhuppa"
           source build/envsetup.sh
+          bash test.sh
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
           mka recoveryimmage # -j$(nproc --all)
         shell: bash
