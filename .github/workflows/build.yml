@@ -14,7 +14,7 @@ env:
   DEVICE: 'RMX3085'
   DEVICE_PATH: 'device/realme/RMX3085'
   FOX_BRANCH: 'fox_12.1'
-  FOX_SYNC: 'https://github.com/skyhuppa/sync'
+  FOX_SYNC: 'https://gitlab.com/OrangeFox/sync.git'
   FOX_SYNC_PATH: sync'
   FOX_THEME: 'https://github.com/skyhuppa/theme.git'
   FOX_THEME_PATH: 'bootable/recovery/gui/theme'
