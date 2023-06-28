@@ -96,7 +96,7 @@ jobs:
         run: |
           git clone --depth=1 --single-branch https://github.com/skyhuppa/sync.git 
           cd sync
-          bash orangefox_sync.sh --branch 12.1 --path ~/work
+          bash orangefox_sync.sh --${{env.FOX_BRANCH}} --path ~/work
 #          git https://github.com/skyhuppa/theme.git bootable/recovery/gui/theme
 
       - name: Sync device tree
