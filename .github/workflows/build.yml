@@ -102,7 +102,7 @@ jobs:
       - name: Sync device tree
         run: |
           cd ~/work
-          git clone --depth=1 --single-branch ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
+          git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
           
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
