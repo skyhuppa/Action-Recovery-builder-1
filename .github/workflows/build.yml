@@ -96,7 +96,7 @@ jobs:
         run: |
           git clone --depth=1 --single-branch https://github.com/skyhuppa/sync.git 
           cd sync
-          bash orangefox_sync.sh --${{env.SYNC_BRANCH}} --path $SYNC_PATH
+          bash orangefox_sync.sh ---branch 12.1 --path /sync
 #          git https://github.com/skyhuppa/theme.git bootable/recovery/gui/theme
 
       - name: Sync device tree
@@ -117,9 +117,10 @@ jobs:
           export FOX_BUILD_DEVICE=RMX3085
           export EXTRA_CMD="export OF_MAINTAINER=Skyhuppa"
           source build/envsetup.sh
-          bash test.sh
+          export OF_DISABLE_KEYMASTER2=1 
+          export OF_LEGACY_SHAR512=1
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
-          mka recoveryimmage # -j$(nproc --all)
+          mka adb bootimmage -j$(nproc --all)
         shell: bash
 
       - name: Get info
