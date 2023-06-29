@@ -101,12 +101,12 @@ jobs:
 
       - name: Sync device tree
         run: |
-          cd ~/fox_12.1
+          cd fox_12.1
           git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
           
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
-          cd ~/fox_12.1 
+          cd fox_12.1 
           export USE_CCACHE=1
           export CCACHE_EXEC=/usr/bin/ccache
           ccache -M 50G
