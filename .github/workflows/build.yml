@@ -109,16 +109,17 @@ jobs:
         run: |
           cd ~/fox_12.1 
           export ${{env.SYNC_BRANCH}}
+          echo ${{env.SYNC_BRANCH}}
           export USE_CCACHE=1
           export CCACHE_EXEC=/usr/bin/ccache
           ccache -M 50G
+          source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
           export FOX_BUILD_TYPE="Unofficial"
           export FOX_BUILD_DEVICE=RMX3085
-          export EXTRA_CMD="export OF_MAINTAINER=Skyhuppa"
-          source build/envsetup.sh
+          export EXTRA_CMD="export OF_MAINTAINER=Skyhuppa"   
           export OF_DISABLE_KEYMASTER2=1 
           export OF_LEGACY_SHAR512=1
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
