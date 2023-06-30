@@ -97,16 +97,18 @@ jobs:
           git clone https://github.com/skyhuppa/sync.git 
           cd sync
           bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
+          git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
 #          git https://github.com/skyhuppa/theme.git bootable/recovery/gui/theme
 
-      - name: Sync device tree
-        run: |
-          cd ~/fox_12.1
-          git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
+#      - name: Sync device tree
+#        run: |
+#          cd ~/fox_12.1
+#          git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
           
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
           cd ~/fox_12.1 
+          export ${{env.SYNC_BRANCH}}
           export USE_CCACHE=1
           export CCACHE_EXEC=/usr/bin/ccache
           ccache -M 50G
