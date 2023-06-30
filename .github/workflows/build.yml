@@ -108,7 +108,6 @@ jobs:
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
           cd ~/fox_12.1 
-          export ${{env.SYNC_BRANCH}}
           echo "${{env.SYNC_BRANCH}}"
           export USE_CCACHE=1
           export CCACHE_EXEC=/usr/bin/ccache
