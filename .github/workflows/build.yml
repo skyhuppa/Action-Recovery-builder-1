@@ -121,7 +121,6 @@ jobs:
           export OF_LEGACY_SHAR512=1
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
           mka adb bootimmage -j$(nproc --all)
-        shell: bash
 
       - name: Get info
         id: info
