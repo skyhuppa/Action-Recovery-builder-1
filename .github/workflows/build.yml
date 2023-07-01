@@ -112,7 +112,6 @@ jobs:
           export CCACHE_EXEC=/usr/bin/ccache
           ccache -M 50G
           source build/envsetup.sh
-          echo "vendorsetup.sh"
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
@@ -122,6 +121,7 @@ jobs:
           export OF_DISABLE_KEYMASTER2=1 
           export OF_LEGACY_SHAR512=1
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
+          bash vendorsetup.sh
           mka adb bootimmage -j$(nproc --all)
 
       - name: Get info
