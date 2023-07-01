@@ -134,8 +134,7 @@ jobs:
           mka ${{env.target}}
           echo "::endgroup::"
         shell: bash
-
-          
+        
       - name: Get info
         id: info
         run: |
