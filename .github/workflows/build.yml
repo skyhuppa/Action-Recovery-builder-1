@@ -97,41 +97,50 @@ jobs:
           git clone https://github.com/skyhuppa/sync.git 
           cd sync
           bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
-        shell: bash
-        
-      - name: Sync device tree
-        run: |
-          cd ~/fox_12.1
           git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
-        shell: bash  
-        
-      - name: Build ${{env.RECOVERY_NAME}}
-        run: |
-          cd ~/fox_12.1 
           export USE_CCACHE=1
           export CCACHE_EXEC=/usr/bin/ccache
           ccache -M 50G
-          echo "::group::Run build/envsetup.sh"
-          source build/envsetup.sh
-          echo "::endgroup::" 
           export ALLOW_MISSING_DEPENDENCIES=true
-          export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
-          export LC_ALL="C"
-          export FOX_BUILD_TYPE=Unofficial
-          export FOX_BUILD_DEVICE=RMX3085  
-          export OF_DISABLE_KEYMASTER2=1 
-          export OF_LEGACY_SHAR512=1
-          echo "::endgroup::"
-          echo "::group::lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng"  
-          lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng  
-          echo "::endgroup::"
-          echo "::group::Sync"
-          repo sync -j$(nproc --all)
-          echo "::endgroup::"
+          source build/envsetup.sh
+          lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng
           echo "::group::Build ${{env.RECOVERY_NAME}}"
-          mka ${{env.target}}
-          echo "::endgroup::"
+          mka ${{env.target}} -j$(nproc --all)
         shell: bash
+        
+#      - name: Sync device tree
+#        run: |
+#          cd ~/fox_12.1
+#          git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
+#        shell: bash  
+        
+#      - name: Build ${{env.RECOVERY_NAME}}
+#        run: |
+#          cd ~/fox_12.1 
+#          export USE_CCACHE=1
+#          export CCACHE_EXEC=/usr/bin/ccache
+#          ccache -M 50G
+#          echo "::group::Run build/envsetup.sh"
+#          source build/envsetup.sh
+#          echo "::endgroup::" 
+#          export ALLOW_MISSING_DEPENDENCIES=true
+#          export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
+#          export LC_ALL="C"
+#          export FOX_BUILD_TYPE=Unofficial
+#          export FOX_BUILD_DEVICE=RMX3085  
+#          export OF_DISABLE_KEYMASTER2=1 
+#          export OF_LEGACY_SHAR512=1
+#          echo "::endgroup::"
+#          echo "::group::lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng"  
+#          lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng  
+#          echo "::endgroup::"
+#          echo "::group::Sync"
+#          repo sync -j$(nproc --all)
+#          echo "::endgroup::"
+#          echo "::group::Build ${{env.RECOVERY_NAME}}"
+#          mka ${{env.target}}
+#          echo "::endgroup::"
+#        shell: bash
         
       - name: Get info
         id: info
