@@ -118,9 +118,8 @@ jobs:
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
-          export FOX_BUILD_TYPE="Unofficial"
-          export FOX_BUILD_DEVICE=RMX3085
-          export EXTRA_CMD="export OF_MAINTAINER=Skyhuppa"   
+          export FOX_BUILD_TYPE=Unofficial
+          export FOX_BUILD_DEVICE=RMX3085  
           export OF_DISABLE_KEYMASTER2=1 
           export OF_LEGACY_SHAR512=1
           echo "::endgroup::"
