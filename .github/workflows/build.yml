@@ -120,10 +120,9 @@ jobs:
           export EXTRA_CMD="export OF_MAINTAINER=Skyhuppa"   
           export OF_DISABLE_KEYMASTER2=1 
           export OF_LEGACY_SHAR512=1
-          lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng 
-          bash vendorsetup.sh
-          mka adb bootimmage -j$(nproc --all)
-
+          lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng      
+          bash vendorsetup.sh mka adb bootimmage -j$(nproc --all)
+          
       - name: Get info
         id: info
         run: |
