@@ -94,13 +94,14 @@ jobs:
 
       - name: fox sync
         run: |
-          git clone https://github.com/skyhuppa/sync.git 
-          cd sync
-          bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
-          git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
           export USE_CCACHE=1
           export CCACHE_EXEC=/usr/bin/ccache
           ccache -M 50G
+          git clone https://github.com/skyhuppa/sync.git 
+          cd sync
+          bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
+          cd fox_12.1
+          git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
           export ALLOW_MISSING_DEPENDENCIES=true
           source build/envsetup.sh
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng
