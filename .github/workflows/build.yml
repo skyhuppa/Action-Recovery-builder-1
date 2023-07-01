@@ -122,7 +122,8 @@ jobs:
           export OF_LEGACY_SHAR512=1
           source build/envsetup.sh
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng      
-          bash vendorsetup.sh mka adb bootimmage -j$(nproc --all)
+          mka adb bootimmage -j$(nproc --all)
+          bash vendorsetup.sh 
           
       - name: Get info
         id: info
