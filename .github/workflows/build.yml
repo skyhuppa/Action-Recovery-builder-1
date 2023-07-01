@@ -18,7 +18,7 @@ env:
   SYNC_PATH: sync'
   FOX_THEME: 'https://github.com/skyhuppa/theme.git'
   FOX_THEME_PATH: 'bootable/recovery/gui/theme'
-  target: bootimage
+  target: recoveryimage
   WorkSpace: WorkSpace
   TZ: Asia/Shanghai
   Author: ${{github.actor}}
@@ -111,7 +111,10 @@ jobs:
           export USE_CCACHE=1
           export CCACHE_EXEC=/usr/bin/ccache
           ccache -M 50G
-        
+          echo "::group::Run Envsetup.sh"
+          source build/envsetup.sh
+          echo "::endgroup::" 
+          echo "::group::Set EnvPath"
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
@@ -120,10 +123,18 @@ jobs:
           export EXTRA_CMD="export OF_MAINTAINER=Skyhuppa"   
           export OF_DISABLE_KEYMASTER2=1 
           export OF_LEGACY_SHAR512=1
-          source build/envsetup.sh
-          lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng      
-          mka adb bootimmage -j$(nproc --all)
-          bash vendorsetup.sh 
+          echo "::endgroup::"
+          echo "::group::lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng  
+          lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng  
+          echo "::endgroup::"
+          echo "::group::Sync"
+          repo sync -j$(nproc --all)
+          echo "::endgroup::"
+          echo "::group::Build ${{env.RECOVERY_NAME}}"
+          mka ${{env.target}}
+          echo "::endgroup::"
+        shell: bash
+
           
       - name: Get info
         id: info
