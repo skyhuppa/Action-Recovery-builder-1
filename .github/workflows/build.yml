@@ -114,7 +114,6 @@ jobs:
           echo "::group::Run build/envsetup.sh"
           source build/envsetup.sh
           echo "::endgroup::" 
-          echo "::group::Set EnvPath"
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
           export LC_ALL="C"
