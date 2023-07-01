@@ -97,21 +97,21 @@ jobs:
           git clone https://github.com/skyhuppa/sync.git 
           cd sync
           bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
+        shell: bash
+        
+      - name: Sync device tree
+        run: |
+          cd ~/fox_12.1
           git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
-#          git https://github.com/skyhuppa/theme.git bootable/recovery/gui/theme
-
-#      - name: Sync device tree
-#        run: |
-#          cd ~/fox_12.1
-#          git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
-          
+        shell: bash  
+        
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
           cd ~/fox_12.1 
           export USE_CCACHE=1
           export CCACHE_EXEC=/usr/bin/ccache
           ccache -M 50G
-          echo "::group::Run Envsetup.sh"
+          echo "::group::Run build/envsetup.sh"
           source build/envsetup.sh
           echo "::endgroup::" 
           echo "::group::Set EnvPath"
@@ -124,7 +124,7 @@ jobs:
           export OF_DISABLE_KEYMASTER2=1 
           export OF_LEGACY_SHAR512=1
           echo "::endgroup::"
-          echo "::group::lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng  
+          echo "::group::lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng"  
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng  
           echo "::endgroup::"
           echo "::group::Sync"
