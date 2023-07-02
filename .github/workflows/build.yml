@@ -125,11 +125,8 @@ jobs:
           echo "::group::lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng"  
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng  
           echo "::endgroup::"
-          echo "::group::Sync"
-          repo sync -j$(nproc --all)
-          echo "::endgroup::"
           echo "::group::Build ${{env.RECOVERY_NAME}}"
-          mka ${{env.target}}
+          mka ${{env.target}} -j$(nproc --all)
           echo "::endgroup::"
         shell: bash
         
