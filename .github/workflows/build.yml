@@ -16,7 +16,7 @@ env:
   OEM: realme 
   SYNC_BRANCH: 12.1
   FOX_SYNC: https://gitlab.com/OrangeFox/sync.git
-  SYNC_PATH: $home/runner/work
+  SYNC_PATH: $pwd
   FOX_THEME: https://github.com/skyhuppa/theme.git
   FOX_THEME_PATH: bootable/recovery/gui/theme
   target: recoveryimage
