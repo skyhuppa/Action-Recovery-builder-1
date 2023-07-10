@@ -106,10 +106,7 @@ jobs:
           cd sync
           bash orangefox_sync.sh --branch ${{env.SYNC_BRANCH}} --path ${{env.SYNC_PATH}}
           git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
-        shell: bash
-        
-      - name: Build ${{env.RECOVERY_NAME}}
-        run: |
+          cd ${{env.DEVICE_PATH}}
           echo "::group::Run build/envsetup.sh"
           source build/envsetup.sh
           echo "::endgroup::" 
