@@ -106,7 +106,10 @@ jobs:
           cd sync
           bash orangefox_sync.sh --branch ${{env.SYNC_BRANCH}} --path ${{env.SYNC_PATH}}
           git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
-          cd ${{env.DEVICE_PATH}}
+          
+          - name: Building recovery
+          run: |
+          cd /home/runner/work/Action-Recovery-builder-1/Action-Recovery-builder-1/sync/fox_12.1/${{env.DEVICE_PATH}}
           echo "::group::Run build/envsetup.sh"
           source build/envsetup.sh
           echo "::endgroup::" 
