@@ -11,11 +11,12 @@ env:
   RECOVERY_NAME: Orangefox
   ProductFileHeader: twrp
   DT_LINK: https://github.com/skyhuppa/Realme_8_RMX3085 -b fox_12.1
+  DEVICE_PATH: device/${OEM}/${DEVICE}
   DEVICE: RMX3085
-  DEVICE_PATH: device/realme/RMX3085
+  OEM: realme 
   SYNC_BRANCH: fox_12.1
-  FOX_SYNC: https://gitlab.com/OrangeFox/sync
-  SYNC_PATH: sync
+  FOX_SYNC: https://gitlab.com/OrangeFox/sync.git
+  SYNC_PATH: $HOME/work
   FOX_THEME: https://github.com/skyhuppa/theme.git
   FOX_THEME_PATH: bootable/recovery/gui/theme
   target: recoveryimage
@@ -95,22 +96,21 @@ jobs:
       - name: fox sync
         run: |
           export USE_CCACHE=1
+          export CCACHE_SIZE="50G"
+          export CCACHE_DIR="$HOME/work/.ccache"
+          export J_VAL=16
+          export USE_CCACHE=1
           export CCACHE_EXEC=/usr/bin/ccache
           ccache -M 50G
-          git clone https://github.com/skyhuppa/sync.git 
+          git clone ${{env.FOX_SYNC}}
           cd sync
-          bash orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
-        shell: bash
-        
-      - name: Sync device tree
-        run: |
-          cd ~/fox_12.1
+          bash orangefox_sync.sh --branch ${{env.SYNC_BRANCH}} --path ${{env.SYNC_PATH}}
           git clone ${{env.DT_LINK}} ${{env.DEVICE_PATH}}
-        shell: bash  
+        shell: bash
         
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
-          cd ~/fox_12.1 
+          cd $SYNC_PATH
           echo "::group::Run build/envsetup.sh"
           source build/envsetup.sh
           echo "::endgroup::" 
