@@ -14,9 +14,9 @@ env:
   DEVICE_PATH: device/${OEM}/${DEVICE}
   DEVICE: RMX3085
   OEM: realme 
-  SYNC_BRANCH: fox_12.1
+  SYNC_BRANCH: 12.1
   FOX_SYNC: https://gitlab.com/OrangeFox/sync.git
-  SYNC_PATH: $HOME/work
+  SYNC_PATH: $home/runner/work
   FOX_THEME: https://github.com/skyhuppa/theme.git
   FOX_THEME_PATH: bootable/recovery/gui/theme
   target: recoveryimage
