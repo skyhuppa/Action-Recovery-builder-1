@@ -114,7 +114,7 @@ jobs:
           echo "::group::Run build/envsetup.sh"
           source build/envsetup.sh
           echo "::endgroup::" 
-          export FOX_BUILD_TYPE="Alpha"
+          export FOX_VERSION="R11.1_1"
           echo "::endgroup::"
           echo "::group::lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng"  
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng  
