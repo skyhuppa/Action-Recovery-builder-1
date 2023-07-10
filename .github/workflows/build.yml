@@ -110,7 +110,6 @@ jobs:
         
       - name: Build ${{env.RECOVERY_NAME}}
         run: |
-          cd $SYNC_PATH
           echo "::group::Run build/envsetup.sh"
           source build/envsetup.sh
           echo "::endgroup::" 
