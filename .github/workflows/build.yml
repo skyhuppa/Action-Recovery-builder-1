@@ -114,13 +114,7 @@ jobs:
           echo "::group::Run build/envsetup.sh"
           source build/envsetup.sh
           echo "::endgroup::" 
-          export ALLOW_MISSING_DEPENDENCIES=true
-          export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
-          export LC_ALL="C"
-          export FOX_BUILD_TYPE=Unofficial
-          export FOX_BUILD_DEVICE=RMX3085  
-          export OF_DISABLE_KEYMASTER2=1 
-          export OF_LEGACY_SHAR512=1
+          export FOX_BUILD_TYPE="Alpha"
           echo "::endgroup::"
           echo "::group::lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng"  
           lunch ${{env.ProductFileHeader}}_${{env.DEVICE}}-eng  
